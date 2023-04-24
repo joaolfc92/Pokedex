@@ -5,7 +5,10 @@ const type          = document.querySelectorAll(".type");
 const types          = document.querySelector("#types");
 const statNumber     = document.querySelectorAll(".stat-number");
 const barInner       = document.querySelectorAll(".bar-inner");
-const barOuter       = document.querySelectorAll(".bar-outer")
+const barOuter       = document.querySelectorAll(".bar-outer");
+const statDesc       = document.querySelectorAll(".stat-desc");
+const baseStats         = document.querySelector("#base-stats");
+const pokedex         = document.querySelector("#pokedex");
 
 const typeColors = {
     "rock":     [182, 158,  49],
@@ -58,6 +61,8 @@ search.addEventListener('change', async (event)=>{
    };
 
    const mainColor = typeColors[pkmnData.types[0].type.name];
+   baseStats.style.color         = `rgb(${mainColor[0]}, ${mainColor[1]}, ${mainColor[2]})`;
+   pokedex.style.backgroundColor = `rgb(${mainColor[0]}, ${mainColor[1]}, ${mainColor[2]})`;
    
 
    // for debugging - will be removed later on
@@ -94,6 +99,9 @@ search.addEventListener('change', async (event)=>{
 
         barInner[i].style.width = `${s.base_stat}%`
         barInner[i].style.backgroundColor = `rgb(${mainColor[0]}, ${mainColor[1]}, ${mainColor[2]})`;
+        barOuter[i].style.backgroundColor = `rgba(${mainColor[0]}, ${mainColor[1]}, ${mainColor[2]}, 0.3)`;
+        statDesc[i].style.color = `rgb(${mainColor[0]}, ${mainColor[1]}, ${mainColor[2]})`;
+       
     });
 
     
