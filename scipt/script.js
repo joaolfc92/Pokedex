@@ -4,7 +4,8 @@ const pokemonImage  = document.querySelector("#pokemon-image");
 const type          = document.querySelectorAll(".type");
 const types          = document.querySelector("#types");
 const statNumber     = document.querySelectorAll(".stat-number");
-const barInner       = document.querySelectorAll(".bar-inner")
+const barInner       = document.querySelectorAll(".bar-inner");
+const barOuter       = document.querySelectorAll(".bar-outer")
 
 const typeColors = {
     "rock":     [182, 158,  49],
@@ -47,12 +48,17 @@ const fetchApi = async (pkmnName) => {
 };
 
 search.addEventListener('change', async (event)=>{
-   const pkmnData =  await fetchApi(event.target.value)
+   const pkmnData =  await fetchApi(event.target.value);
 
    //validation when pokemon does not exist
 
-   if(!pkmnData) alert("Pokemon não registrado");
+   if(!pkmnData) {
+    alert('Pokemon não registrado');
+    return;
+   };
 
+   const mainColor = typeColors[pkmnData.types[0].type.name];
+   
 
    // for debugging - will be removed later on
    console.log(pkmnData);
@@ -87,9 +93,10 @@ search.addEventListener('change', async (event)=>{
         statNumber[i].innerHTML = s.base_stat.toString().padStart(3, '0');
 
         barInner[i].style.width = `${s.base_stat}%`
+        barInner[i].style.backgroundColor = `rgb(${mainColor[0]}, ${mainColor[1]}, ${mainColor[2]})`;
     });
 
-    //update stats bars
+    
 
 
 
