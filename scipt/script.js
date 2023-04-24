@@ -3,6 +3,8 @@ const number        = document.querySelector('#number');
 const pokemonImage  = document.querySelector("#pokemon-image");
 const type          = document.querySelectorAll(".type");
 const types          = document.querySelector("#types");
+const statNumber     = document.querySelectorAll(".stat-number");
+const barInner       = document.querySelectorAll(".bar-inner")
 
 const typeColors = {
     "rock":     [182, 158,  49],
@@ -66,15 +68,34 @@ search.addEventListener('change', async (event)=>{
 
     pkmnData.types.forEach((t)=>{
     let newType = document.createElement("span");
+    let color = typeColors[t.type.name];
+
+
     newType.innerHTML = t.type.name;
     newType.classList.add("type");
-    newType.style.backgroundColor = 'rgb($ {typeColors[t.type.name][0]}, $ {typeColors[t.type.name][1]}, $ {typeColors[t.type.name][2]})';
+    newType.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
     
 
     
     types.appendChild(newType);
 
-    })
+    });
+
+    // updates stats
+
+    pkmnData.stats.forEach((s, i) => {
+        statNumber[i].innerHTML = s.base_stat.toString().padStart(3, '0');
+
+        barInner[i].style.width = `${s.base_stat}%`
+    });
+
+    //update stats bars
+
+
+
+
+
+
 
 });
 
