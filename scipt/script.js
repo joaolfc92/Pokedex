@@ -104,14 +104,6 @@ search.addEventListener('change', async (event)=>{
        
     });
 
-    
-
-
-
-
-
-
-
 });
 
 
